@@ -34,7 +34,7 @@ storyblokInit({
 function MyApp({ Component, pageProps }) {  
   const [queryClient] = React.useState(() => new QueryClient())
 
-  const [user, setUser] = useState(null);  
+  const [user, setUser] = useState({user: "test"});  
   
   return (     
     <AuthContext.Provider value={{user, setUser}}>      
