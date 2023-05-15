@@ -6,6 +6,20 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var projectRouter = require('./routes/project');
+var countryRouter = require('./routes/country');
+var tokenRouter = require('./routes/token');
+var suggestedArticlesRouter = require('./routes/suggested-articles');
+var timezoneRouter = require('./routes/timezone');
+var adminRouter = require('./routes/admin');
+var commentRouter = require('./routes/comment');
+var communityRouter = require('./routes/community');
+var eventRouter = require('./routes/event');
+var exploreRouter = require('./routes/explore');
+var newsRouter = require('./routes/news');
+var notificationRouter = require('./routes/notification');
+var postRouter = require('./routes/post');
+var searchRouter = require('./routes/search');
+var userRouter = require('./routes/user');
 
 var app = express();
 
@@ -21,6 +35,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/project', projectRouter);
+app.use('/country', countryRouter);
+app.use('/token', tokenRouter);
+app.use('/suggested-articles', suggestedArticlesRouter);
+app.use('/timezone', timezoneRouter);
+app.use('/admin', adminRouter);
+app.use('/comment', commentRouter);
+app.use('/community', communityRouter);
+app.use('/event', eventRouter);
+app.use('/explore', exploreRouter);
+app.use('/news', newsRouter);
+app.use('/notification', notificationRouter);
+app.use('/post', postRouter);
+app.use('/search', searchRouter);
+app.use('/user', userRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

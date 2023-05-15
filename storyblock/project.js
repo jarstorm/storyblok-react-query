@@ -1,21 +1,26 @@
-const {STORYBLOK_SERVER_URL, STORYBLOK_TOKEN, STORYBLOK_BASIC_SERVER_URL} = require("../config");
-
+const {getStoryBlockInstance} = require("./init");
 const getStoryblockProjectDataByCategory = (category) => {
-    let url = STORYBLOK_SERVER_URL + "&content_type=post";
+
+    let params = { version: "draft", content_type:"post" };
     if (category !== "all") {
-    url += `&filter_query[type][in]=${category}`
+        params["type"] = {is: category};
     }
 
     return new Promise((resolve) => {
-        fetch(url).then(res => res.json()).then(d => resolve(d));
+        getStoryBlockInstance().getAll('cdn/stories', params ).then(d => resolve(d))
     });
 }
 
 const getStoryblockProjectDataById = (id) => {
-    let url = `${STORYBLOK_BASIC_SERVER_URL}/${id}?token=${STORYBLOK_TOKEN}` ;
 
-    return new Promise((resolve) => {
-        fetch(url).then(res => res.json()).then(d => resolve(d));
+    return new Promise((resolve, reject) => {
+        getStoryBlockInstance().get('cdn/stories/' + id,  ).then(d => {
+            if (d && d.data) {
+                resolve(d.data.story)
+            }else {
+                reject()
+            }
+        })
     });
 }
 

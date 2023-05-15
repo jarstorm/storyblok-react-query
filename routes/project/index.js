@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
     const {category} = req.query
     res.setHeader('Content-Type', 'application/json');
 
-    getStoryblockProjectDataByCategory(category).then(sb =>completeProjectsData(sb.stories)).then(d => res.send(d))
+    getStoryblockProjectDataByCategory(category).then(sb =>completeProjectsData(sb)).then(d => res.send(d))
 });
 
 router.get('/:id', function(req, res, next) {
@@ -18,7 +18,7 @@ router.get('/:id', function(req, res, next) {
 
     res.setHeader('Content-Type', 'application/json');
 
-    getStoryblockProjectDataById(id).then(sb =>completeProjectsData([sb.story])).then(d => res.send(d[0]))
+    getStoryblockProjectDataById(id).then(sb =>completeProjectsData([sb])).then(d => res.send(d[0]))
 });
 
 
